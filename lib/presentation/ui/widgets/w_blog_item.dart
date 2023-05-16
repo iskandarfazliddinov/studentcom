@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student_com_app/presentation/ui/resources/app_images.dart';
 import 'package:student_com_app/presentation/ui/resources/app_style.dart';
 
 
@@ -20,11 +21,11 @@ class WBlogItem extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.network(
-                image,
-                width: 100,
-                height: 100,
-                fit: BoxFit.cover,
+              Expanded(
+                child: Image.asset(
+                  "assets/images/student.jpg",
+                  fit: BoxFit.cover,
+                ),
               ),
               _getSizeBox(),
               Column(
@@ -32,6 +33,7 @@ class WBlogItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
+                    maxLines: 2,
                     title,
                     style: AppStyles.getBlogTitle(),
                   ),
