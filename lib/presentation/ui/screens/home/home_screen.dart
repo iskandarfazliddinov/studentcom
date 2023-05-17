@@ -3,6 +3,8 @@ import 'package:student_com_app/presentation/ui/resources/app_color.dart';
 import 'package:carousel_images/carousel_images.dart';
 import 'package:student_com_app/presentation/ui/resources/app_images.dart';
 import 'package:student_com_app/presentation/ui/resources/app_style.dart';
+import 'package:student_com_app/presentation/ui/screens/choose_house/choose_house_screen.dart';
+import 'package:student_com_app/presentation/ui/widgets/w_arrival_time.dart';
 import 'package:student_com_app/presentation/ui/widgets/w_blog_item.dart';
 import 'package:student_com_app/presentation/ui/widgets/w_categores_titles.dart';
 import 'package:student_com_app/presentation/ui/widgets/w_categories_item.dart';
@@ -15,10 +17,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 final List<String> listImages = [
-  'https://cdn.flixbus.de/2018-01/munich-header-d8_0.jpg',
-  'https://cdn.flixbus.de/2018-01/munich-header-d8_0.jpg',
-  'https://cdn.flixbus.de/2018-01/munich-header-d8_0.jpg',
-  'https://cdn.flixbus.de/2018-01/munich-header-d8_0.jpg',
+  AppImages.carusel,
+  AppImages.carusel,
+  AppImages.carusel,
+  AppImages.carusel,
 ];
 
 class _HomeScreenState extends State<HomeScreen> {
@@ -46,15 +48,26 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         ...List.generate(
                           5,
-                          (index) => const WCategories(
-                              addressTitle: "Lewisham Exchange London",
-                              money: "380\$",
-                              addressSubTitle:
-                                  "Distance to Amos Business School (London...",
-                              run: "23 min",
-                              bus: "11 min",
-                              car: "8 min"),
-                        )
+                          (index) => Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              WCategories(
+                                addressTitle: "Lewisham Exchange London",
+                                money: "380\$",
+                                addressSubTitle:
+                                    "Distance to Amos Business School (London...",
+                                tapCallback: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ChooseHouseScreen(),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -65,15 +78,26 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         ...List.generate(
                           5,
-                          (index) => const WCategories(
-                              addressTitle: "Lewisham Exchange London",
-                              money: "380\$",
-                              addressSubTitle:
-                                  "Distance to Amos Business School (London...",
-                              run: "23 min",
-                              bus: "11 min",
-                              car: "8 min"),
-                        )
+                          (index) => Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              WCategories(
+                                addressTitle: "Lewisham Exchange London",
+                                money: "380\$",
+                                addressSubTitle:
+                                    "Distance to Amos Business School (London...",
+                                tapCallback: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ChooseHouseScreen(),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -262,6 +286,4 @@ _getCarousel() => Container(
       ),
     );
 
-_getSizeBox() => const SizedBox(
-      width: 12,
-    );
+_getSizeBox() => const SizedBox(width: 12);

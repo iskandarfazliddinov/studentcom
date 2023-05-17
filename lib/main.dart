@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:student_com_app/presentation/ui/screens/choose_house/choose_house_screen.dart';
 import 'package:student_com_app/presentation/ui/screens/home/home_screen.dart';
 import 'package:student_com_app/presentation/ui/screens/main/main_screen.dart';
 

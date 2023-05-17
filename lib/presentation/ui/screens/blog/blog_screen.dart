@@ -36,7 +36,8 @@ class _BlogScreenState extends State<BlogScreen> {
                         ),
                       ),
                     ],
-                  )),
+                  ),
+              ),
             ],
           ),
         ),
@@ -45,8 +46,8 @@ class _BlogScreenState extends State<BlogScreen> {
   }
   _getStack() =>  Stack(
     children: [
-      Image.network(
-        "https://oboy3d.ru/pictures/product/l/50011a14f6353ebace579648b87f042a29c380ca.jpg",
+      Image.asset(
+        AppImages.london,
         width: double.infinity,
         height: 300,
         fit: BoxFit.cover,
