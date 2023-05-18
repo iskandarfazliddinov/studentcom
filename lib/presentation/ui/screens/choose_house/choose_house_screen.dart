@@ -8,6 +8,8 @@ import 'package:student_com_app/presentation/ui/widgets/w_categores_titles.dart'
 import 'package:student_com_app/presentation/ui/widgets/w_facilities_items.dart';
 import 'package:student_com_app/presentation/ui/widgets/w_inclusive_items.dart';
 
+import '../../widgets/w_categories_item.dart';
+
 class ChooseHouseScreen extends StatefulWidget {
   const ChooseHouseScreen({Key? key}) : super(key: key);
 
@@ -123,14 +125,85 @@ class _ChooseHouseScreenState extends State<ChooseHouseScreen> {
                   ),
                 ),
               ),
+              _getTitle("Bills Details"),
+              _getBillsDetails(),
               Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Text(
-                  "Bills Details",
-                  style: AppStyles.getTitleCategory().copyWith(fontSize: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 16.0),
+                child: Text.rich(
+                  TextSpan(
+                    text: "Tips: ",
+                    style: const TextStyle(color: Colors.black, fontSize: 12.0),
+                    children: [
+                      TextSpan(
+                        text:
+                            "Facilities and fares are subject to the final contract.",
+                        style: TextStyle(
+                          fontSize: 12.0,
+                          color: Colors.black.withOpacity(0.5),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
-              _getBillsDetails(),
+              Stack(
+                children: [
+                  Column(
+                    children: [
+                      Image.asset(
+                        AppImages.maps,
+                        width: double.infinity,
+                        height: 200,
+                        fit: BoxFit.cover,
+                      ),
+                      Positioned(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                          child: Container(
+                            color: Colors.cyan,
+                            width: double.infinity,
+                            child: const Center(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(vertical: 16.0),
+                                child: Text(
+                                  "View Map",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 24),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12.0),
+                child: WCategoriesTitle(textTitle: "Property details"),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: Row(
+                  children: [
+                    const Icon(Icons.location_on_outlined),
+                    const SizedBox(width: 4,),
+                    Text("Exchange Point, Loampit Vale,London,London,SE13 7NX",style: TextStyle(color: Colors.black.withOpacity(0.5),fontSize: 14),),
+                  ],
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Text("Admire London from above by renting a studio with a\nbreathtaking view!",style: TextStyle(fontSize: 16,),),
+              ),
+              _getPopulars(),
+              _getRecommendations(),
+              _getButton(),
+              const SizedBox(height: 12),
             ],
           ),
         ),
@@ -138,7 +211,44 @@ class _ChooseHouseScreenState extends State<ChooseHouseScreen> {
       ),
     );
   }
-
+  _getRecommendations()=> Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      _getTitle("Recommendations"),
+      Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              ...List.generate(
+                5,
+                    (index) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    WCategories(
+                      addressTitle: "Lewisham Exchange London",
+                      money: "380\$",
+                      addressSubTitle:
+                      "Distance to Amos Business School (London...",
+                      tapCallback: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                            const ChooseHouseScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ],
+  );
   _getStack() => Stack(
         children: [
           Image.asset(
@@ -193,57 +303,112 @@ class _ChooseHouseScreenState extends State<ChooseHouseScreen> {
         ],
       );
 }
-_getBillsDetails()=>Padding(
+_getButton() => GestureDetector(
+  onTap: (){},
+  child:   Padding(
+    padding: const EdgeInsets.all(12.0),
+    child: Container(
+      width: double.infinity,
+      color: Colors.cyanAccent,
+      child: const Padding(
+        padding: EdgeInsets.symmetric(vertical: 16.0),
+        child: Center(
+          child: Text(
+            "View all properties in London",
+            style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.w600),
+          ),
+        ),
+      ),
+    ),
+  ),
+);
+
+_getTitle(String title)=> Padding(
+  padding: const EdgeInsets.all(12.0),
+  child: Text(
+    title,
+    style: AppStyles.getTitleCategory().copyWith(fontSize: 20),
+  ),
+);
+
+_getPopulars()=> Padding(
   padding: const EdgeInsets.all(12.0),
   child: Container(
-    color: const Color(0xFFF2FBFA),
+    decoration: const BoxDecoration(
+        color: Color(0xFFF8F8F6)
+    ),
     child: Padding(
       padding: const EdgeInsets.all(12.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children:  [
-          const Text(
-            "All inclusive bills",
-            style: TextStyle(
-                color: Colors.black,
-                fontSize: 18,
-                fontWeight: FontWeight.w500),
+        children: const [
+          Icon(
+            Icons.home_filled,
+            color: Colors.orange,
+            size: 32,
           ),
-          const SizedBox(height: 8),
-          const Text(
-            "The price is the final price, no other frees added",
+          SizedBox(height: 12),
+          Text(
+            "Popular! 7 students saved this property to their\nwishlist",
             style: TextStyle(
-              fontSize: 18,
-            ),
+                color: Colors.black, letterSpacing: 1.4),
           ),
-          const SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  WInclusiveItems(icon: Icons.done, text: "Wifi"),
-                  SizedBox(height: 8),
-                  WInclusiveItems(icon: Icons.done, text: "Electricity"),
-                ],
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: const [
-                  WInclusiveItems(icon: Icons.done, text: "Water"),
-                  SizedBox(height:8),
-                  WInclusiveItems(icon: Icons.done, text: "Gas"),
-                ],
-              ),
-              const SizedBox(),
-            ],
-          )
         ],
       ),
     ),
   ),
 );
+
+_getBillsDetails() => Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Container(
+        color: const Color(0xFFF2FBFA),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "All inclusive bills",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                "The price is the final price, no other frees added",
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      WInclusiveItems(icon: Icons.done, text: "Wifi"),
+                      SizedBox(height: 8),
+                      WInclusiveItems(icon: Icons.done, text: "Electricity"),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: const [
+                      WInclusiveItems(icon: Icons.done, text: "Water"),
+                      SizedBox(height: 8),
+                      WInclusiveItems(icon: Icons.done, text: "Gas"),
+                    ],
+                  ),
+                  const SizedBox(),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
 
 _getEntirePlace() => Column(
       children: [

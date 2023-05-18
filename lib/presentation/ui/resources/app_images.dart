@@ -7,4 +7,5 @@ abstract class AppImages{
   static const String london= "$pathIcon/london.jpg";
   static const String carusel= "$pathIcon/carusel.jpg";
   static const String room= "$pathIcon/room.jpg";
+  static const String maps= "$pathIcon/map.jpg";
 }
