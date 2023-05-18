@@ -12,5 +12,5 @@ abstract class AppIcons{
   static const String student = "$pathIcon/student_gr.png";
   static const String wishlist = "$pathIcon/wishlist.png";
   static const String meeting = "$pathIcon/meeting.png";
-
+  static const String wishlistRed = "$pathIcon/wishlist_red.png";
 }
