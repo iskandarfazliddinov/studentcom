@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:student_com_app/presentation/ui/resources/app_color.dart';
 import 'package:student_com_app/presentation/ui/resources/app_icons.dart';
 import 'package:student_com_app/presentation/ui/resources/app_images.dart';
@@ -7,6 +6,7 @@ import 'package:student_com_app/presentation/ui/resources/app_style.dart';
 import 'package:student_com_app/presentation/ui/widgets/w_arrival_time.dart';
 import 'package:student_com_app/presentation/ui/widgets/w_categores_titles.dart';
 import 'package:student_com_app/presentation/ui/widgets/w_facilities_items.dart';
+import 'package:student_com_app/presentation/ui/widgets/w_inclusive_items.dart';
 
 class ChooseHouseScreen extends StatefulWidget {
   const ChooseHouseScreen({Key? key}) : super(key: key);
@@ -22,6 +22,7 @@ class _ChooseHouseScreenState extends State<ChooseHouseScreen> {
       child: Scaffold(
         body: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _getStack(),
               _getMains(),
@@ -81,7 +82,55 @@ class _ChooseHouseScreenState extends State<ChooseHouseScreen> {
                 ),
               ),
               _getChooseRoom(),
-              _getEntirePlace()
+              _getEntirePlace(),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 12.0, vertical: 24.0),
+                child: Container(
+                  color: const Color(0xFFFFF8DB),
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: const [
+                            Icon(
+                              Icons.task_alt_rounded,
+                              color: Colors.amberAccent,
+                            ),
+                            SizedBox(width: 4),
+                            Text(
+                              "Price Match Promise",
+                              style: TextStyle(
+                                color: Colors.amberAccent,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 8),
+                        const Text(
+                          "Find a lower price and we'll match it.\nTerms & Conditions",
+                          style: TextStyle(
+                            fontSize: 16,
+                            letterSpacing: 1.4,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Text(
+                  "Bills Details",
+                  style: AppStyles.getTitleCategory().copyWith(fontSize: 20),
+                ),
+              ),
+              _getBillsDetails(),
             ],
           ),
         ),
@@ -90,7 +139,7 @@ class _ChooseHouseScreenState extends State<ChooseHouseScreen> {
     );
   }
 
-_getStack() => Stack(
+  _getStack() => Stack(
         children: [
           Image.asset(
             AppImages.room,
@@ -144,141 +193,214 @@ _getStack() => Stack(
         ],
       );
 }
-_getEntirePlace() => Column(
-  children: [
-    Padding(
-      padding: const EdgeInsets.symmetric(vertical: 16.0),
-      child: Row(
-        children: [
-          Container(
-            color: Colors.yellow,
-            width: 10,
-            height: 35,
-          ),
-          const SizedBox(width: 24),
-          Text(
-            "Entire Place",
-            style: AppStyles.getTitleCategory().copyWith(fontSize: 20),
-          ),
-        ],
-      ),
-    ),
-    Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 16.0),
+_getBillsDetails()=>Padding(
+  padding: const EdgeInsets.all(12.0),
+  child: Container(
+    color: const Color(0xFFF2FBFA),
+    child: Padding(
+      padding: const EdgeInsets.all(12.0),
       child: Column(
-        children: [
-          Stack(
-            children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Image.asset(AppImages.london,
-                    width: 100, height: 80, fit: BoxFit.fill,),
-                  const SizedBox(width: 12),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Classic Studio",
-                        style: AppStyles.getBlogTitle()
-                            .copyWith(color: Colors.black),
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        "Private bathroom\nSmall double bed (app. 125cm*190cm)",
-                        style: TextStyle(fontSize: 14),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Positioned(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Image.asset(
-                      AppIcons.wishlistRed,
-                      width: 24,
-                      height: 24,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.0),
-                      child: SizedBox(
-                          height: 24,
-                          child: VerticalDivider(
-                              color: Colors.black,
-                              thickness: 1,
-                              width: 1,
-                              endIndent: 0,
-                              indent: 0)),
-                    ),
-                    const Icon(
-                      Icons.copy,
-                      size: 24,
-                      color: Colors.cyan,
-                    )
-                  ],
-                ),
-              )
-            ],
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children:  [
+          const Text(
+            "All inclusive bills",
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 18,
+                fontWeight: FontWeight.w500),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 28.0),
-            child: Divider(color: Colors.black.withOpacity(0.5),thickness: 1,),
+          const SizedBox(height: 8),
+          const Text(
+            "The price is the final price, no other frees added",
+            style: TextStyle(
+              fontSize: 18,
+            ),
           ),
+          const SizedBox(height: 8),
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: const [
-                  Text("Move in after Sep 2, 2023\nMove out before Aug 31 ,\n2024",style: TextStyle(letterSpacing: 1.4),),
+                  WInclusiveItems(icon: Icons.done, text: "Wifi"),
                   SizedBox(height: 8),
-                  Text("Min stay 52 weeks",style: TextStyle(color: Colors.black),),
+                  WInclusiveItems(icon: Icons.done, text: "Electricity"),
                 ],
               ),
               Column(
-                children: [
-                  Text.rich(
-                    TextSpan(
-                      text: "384\$ ",
-                      style: const TextStyle(
-                          fontSize: 24,
-                          color: Color(0xFFD25D20),
-                          fontWeight: FontWeight.w700),
-                      children: [
-                        TextSpan(
-                          text: " /week",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black.withOpacity(0.6),
-                          ),
-                        )
-                      ],),
-                  ),
-                  const SizedBox(height: 12.0),
-                  GestureDetector(
-                    onTap: (){},
-                    child: Container(
-                      color: Colors.amberAccent,
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 12.0,horizontal: 28.0),
-                        child: Text("Enquire",style: TextStyle(color: Colors.black,fontSize: 16,),),
-                      ),
-                    ),
-                  )
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: const [
+                  WInclusiveItems(icon: Icons.done, text: "Water"),
+                  SizedBox(height:8),
+                  WInclusiveItems(icon: Icons.done, text: "Gas"),
                 ],
-              )
+              ),
+              const SizedBox(),
             ],
           )
         ],
       ),
-    )
-  ],
+    ),
+  ),
 );
+
+_getEntirePlace() => Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
+          child: Row(
+            children: [
+              Container(
+                color: Colors.yellow,
+                width: 10,
+                height: 35,
+              ),
+              const SizedBox(width: 24),
+              Text(
+                "Entire Place",
+                style: AppStyles.getTitleCategory().copyWith(fontSize: 20),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 16.0),
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Image.asset(
+                        AppImages.london,
+                        width: 100,
+                        height: 80,
+                        fit: BoxFit.fill,
+                      ),
+                      const SizedBox(width: 12),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Classic Studio",
+                            style: AppStyles.getBlogTitle()
+                                .copyWith(color: Colors.black),
+                          ),
+                          const SizedBox(height: 8),
+                          const Text(
+                            "Private bathroom\nSmall double bed (app. 125cm*190cm)",
+                            style: TextStyle(fontSize: 14),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  Positioned(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Image.asset(
+                          AppIcons.wishlistRed,
+                          width: 24,
+                          height: 24,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 8.0),
+                          child: SizedBox(
+                              height: 24,
+                              child: VerticalDivider(
+                                  color: Colors.black,
+                                  thickness: 1,
+                                  width: 1,
+                                  endIndent: 0,
+                                  indent: 0)),
+                        ),
+                        const Icon(
+                          Icons.copy,
+                          size: 24,
+                          color: Colors.cyan,
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 28.0),
+                child: Divider(
+                  color: Colors.black.withOpacity(0.5),
+                  thickness: 1,
+                ),
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text(
+                        "Move in after Sep 2, 2023\nMove out before Aug 31 ,\n2024",
+                        style: TextStyle(letterSpacing: 1.4),
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        "Min stay 52 weeks",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text.rich(
+                        TextSpan(
+                          text: "384\$ ",
+                          style: const TextStyle(
+                              fontSize: 24,
+                              color: Color(0xFFD25D20),
+                              fontWeight: FontWeight.w700),
+                          children: [
+                            TextSpan(
+                              text: " /week",
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: Colors.black.withOpacity(0.6),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 12.0),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          color: Colors.amberAccent,
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 12.0, horizontal: 28.0),
+                            child: Text(
+                              "Enquire",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              )
+            ],
+          ),
+        )
+      ],
+    );
 
 _getBottomNavigation() => Row(
       children: [
