@@ -5,4 +5,6 @@ abstract class AppColors{
   static const Color categorySubtitle =  Color(0xFF00FFEF);
   static const Color colorAmber =  Color(0xFFE64B04);
   static const Color colorBac =  Color(0xFFF8F8F6);
+  static const Color black =  Colors.black;
+
 }
