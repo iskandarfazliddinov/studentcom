@@ -90,13 +90,13 @@ class _ChooseHouseScreenState extends State<ChooseHouseScreen> {
                     horizontal: 12.0, vertical: 24.0),
                 child: Container(
                   color: const Color(0xFFFFF8DB),
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(12.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
-                          children: const [
+                          children: [
                             Icon(
                               Icons.task_alt_rounded,
                               color: Colors.amberAccent,
@@ -112,8 +112,8 @@ class _ChooseHouseScreenState extends State<ChooseHouseScreen> {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 8),
-                        const Text(
+                        SizedBox(height: 8),
+                        Text(
                           "Find a lower price and we'll match it.\nTerms & Conditions",
                           style: TextStyle(
                             fontSize: 16,
@@ -192,7 +192,14 @@ class _ChooseHouseScreenState extends State<ChooseHouseScreen> {
                   children: [
                     const Icon(Icons.location_on_outlined),
                     const SizedBox(width: 4,),
-                    Text("Exchange Point, Loampit Vale,London,London,SE13 7NX",style: TextStyle(color: Colors.black.withOpacity(0.5),fontSize: 14),),
+                    Expanded(
+                        child: Text(
+                      "Exchange Point, Loampit Vale,London,London,SE13 7NX",
+                      style: TextStyle(
+                        color: Colors.black.withOpacity(0.5),
+                        fontSize: 14,
+                      ),
+                    )),
                   ],
                 ),
               ),
